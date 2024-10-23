@@ -2,8 +2,7 @@ import React, { useState } from 'react';
 import axios from 'axios';
 
 const App = () => {
-  const [weather, setWeather] = useState(null);
-  const [city, setCity] = useState('');
+  const [htmlContent, setHtmlContent] = useState('');
 
   //Pull weather information for city from flask server
   const fetchWeather = async () => {
@@ -11,7 +10,7 @@ const App = () => {
     try {
       const response = await axios.get(`/weather?city=${city}`);
       const weatherData = response.data;
-      document.getElementById('weatherResult').innerHTML = `
+      document.getElementById('weatherRes').innerHTML = `
         <h3>${weatherData.name}</h3>
         <p>${weatherData.weather[0].description}</p>
         <p>${weatherData.main.temp}°C</p>
