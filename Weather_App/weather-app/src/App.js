@@ -5,6 +5,7 @@ const App = () => {
   const [weather, setWeather] = useState(null);
   const [city, setCity] = useState('');
 
+  //Pull weather information for city from flask server
   const fetchWeather = async () => {
     const response = await axios.get(`http://localhost:5000/weather?city=${city}`);
     setWeather(response.data);
