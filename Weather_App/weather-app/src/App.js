@@ -12,12 +12,7 @@ const App = () => {
 
   return (
     <div>
-      <input 
-        type="text" 
-        value={city} 
-        onChange={(e) => setCity(e.target.value)} 
-        placeholder="Enter city" 
-      />
+      <input type="text" value={city} onChange={(e) => setCity(e.target.value)} placeholder="Enter city"/>
       <button onClick={fetchWeather}>Get Weather</button>
       {weather && (
         <div>
