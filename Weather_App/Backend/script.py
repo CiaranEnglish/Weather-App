@@ -1,7 +1,7 @@
 from flask import Flask, request, jsonify, render_template
 import requests
 
-app = Flask(__name__)
+app = Flask(__name__, static_folder='build', static_url_path='')
 
 #Set default route to access react app
 @app.route('/')
@@ -11,9 +11,9 @@ def home():
 #Set weather route, retrieves weather info from openweathermap
 @app.route('/weather', methods=['GET'])
 def get_weather():
+    api_key = 'Your API Key'
     city = request.args.get('city')
-    api_key = '873dbf28df7658a02a6bc76a3e948efa '
-    url = f'http://api.openweathermap.org/data/2.5/forecast?id=524901&appid={api_key}'
+    url = f'http://api.openweathermap.org/data/2.5/weather?q={city}&appid={api_key}&units=metric'
     response = requests.get(url)
     data = response.json()
     return jsonify(data)
