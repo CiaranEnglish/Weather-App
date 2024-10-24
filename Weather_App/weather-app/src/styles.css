@@ -1,34 +1,49 @@
-/* src/styles.css */
 body {
     font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
+    background: linear-gradient(to bottom, #87CEEB, #fff);
     margin: 0;
     padding: 0;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .container {
-    max-width: 600px;
-    margin: 50px auto;
+    max-width: 400px;
+    width: 100%;
     padding: 20px;
     background-color: white;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    text-align: center; /* Center content inside the container */
 }
 
-header {
-    text-align: center;
+header{
+    display: block;
+}
+h1 {
     margin-bottom: 20px;
+    color: #333;
+    text-align: center;
+}
+p{
+    margin-bottom: 20px;
+    color: #333;
+    text-align: center;
 }
 
 input[type="text"] {
-    width: calc(20% - 22px);
+    width: 100%; /* Full width for better alignment */
     padding: 10px;
     margin-bottom: 10px;
     border: 1px solid #ccc;
     border-radius: 5px;
+    box-sizing: border-box;
 }
 
 button {
-    width: 10%;
+    width: 100%;
     padding: 10px;
     background-color: #007BFF;
     border: none;
@@ -41,7 +56,16 @@ button:hover {
     background-color: #0056b3;
 }
 
-#weatherRes {
+#weatherBox {
     margin-top: 20px;
+    padding: 20px;
+    background-color: #f0f0f0;
+    border-radius: 5px;
     text-align: center;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+#weatherBox h3, #weatherBox p {
+    margin: 10px 0;
+    padding: 5px;
 }

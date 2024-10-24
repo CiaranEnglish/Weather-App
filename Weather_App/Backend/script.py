@@ -1,17 +1,23 @@
-from flask import Flask, request, jsonify, render_template
+from flask import Flask, request, jsonify, send_from_directory
 import requests
 
 app = Flask(__name__, static_folder='build', static_url_path='')
 
-#Set default route to access react app
 @app.route('/')
-def home():
-    return app.send_static_file('index.html')
+def root():
+    return send_from_directory('build', 'index.html')
 
-#Set weather route, retrieves weather info from openweathermap
+@app.route('/home.html')
+def home():
+    return send_from_directory('public', 'home.html')
+
+@app.route('/weather.html')
+def weather():
+    return send_from_directory('public', 'weather.html')
+
 @app.route('/weather', methods=['GET'])
 def get_weather():
-    api_key = 'Your API Key'
+    api_key = '873dbf28df7658a02a6bc76a3e948efa'
     city = request.args.get('city')
     url = f'http://api.openweathermap.org/data/2.5/weather?q={city}&appid={api_key}&units=metric'
     response = requests.get(url)
