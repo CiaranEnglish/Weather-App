@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
 const Weather = () => {
   const location = useLocation();
+  const navigate = useNavigate();
   const [htmlContent, setHtmlContent] = useState('');
   const [weatherData, setWeatherData] = useState(null);
 
@@ -30,16 +31,30 @@ const Weather = () => {
 
   useEffect(() => {
     if (weatherData && htmlContent) {
-      const weatherBox = document.getElementById('weatherBox');
-      if (weatherBox) {
-        weatherBox.innerHTML = `
-          <h3>${weatherData.name}</h3>
-          <p>${weatherData.weather[0].description}</p>
-          <p>${weatherData.main.temp}°C</p>
-        `;
+      const locationElement = document.getElementById('weatherLocation');
+      if (locationElement) {
+        locationElement.textContent = weatherData.name;
       }
+      document.getElementById('weatherDescription').innerHTML = `<p>${weatherData.weather[0].description}</p>`;
+      document.getElementById('weatherTemp').innerHTML = `<p>${weatherData.main.temp}°C</p>`;
+      document.getElementById('weatherHumidity').innerHTML = `<p>Humidity: ${weatherData.main.humidity}%</p>`;
+      document.getElementById('weatherWind').innerHTML = `<p>Wind Speed: ${weatherData.wind.speed} m/s</p>`;
     }
   }, [weatherData, htmlContent]);
+
+  useEffect(() => {
+    if (htmlContent) {
+      const btn = document.getElementById('getWeather');
+      if (btn) {
+        btn.addEventListener('click', handleSearch);
+      }
+    }
+  }, [htmlContent]);
+
+  const handleSearch = () => {
+    const city = document.getElementById('cityInput').value;
+    navigate(`/weather?city=${city}`);
+  };
 
   return (
     <div dangerouslySetInnerHTML={{ __html: htmlContent }} />

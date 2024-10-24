@@ -17,7 +17,7 @@ def weather():
 
 @app.route('/weather', methods=['GET'])
 def get_weather():
-    api_key = '873dbf28df7658a02a6bc76a3e948efa'
+    api_key = 'Insert API Key'
     city = request.args.get('city')
     url = f'http://api.openweathermap.org/data/2.5/weather?q={city}&appid={api_key}&units=metric'
     response = requests.get(url)
